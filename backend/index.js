@@ -3,13 +3,14 @@ const cors = require("cors");
 const path = require("path");
 const Razorpay = require("razorpay");
 const shortid = require("shortid");
+require("dotenv").config()
 
 const app = express();
 app.use(express.json());
 app.use(cors({ origin: true }));
 const razorPay = new Razorpay({
-  key_id: "rzp_test_Sf6zqng6XmjVZ8",
-  key_secret: "qgTK86G5KzmAm4F2FTiWbDvZ",
+  key_id:process.env.KEY_ID,
+  key_secret:process.env.KEY_SECRET,
 });
 app.get("/logo.svg", (req, res) => {
   res.sendFile(path.join(__dirname, "logo.svg"));
